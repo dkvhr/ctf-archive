@@ -1,0 +1,146 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://04B_30__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/images/background.png" type="Texture" id=2]
+[ext_resource path="res://scripts/shop.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/drippy_buggy.png" type="Texture" id=4]
+[ext_resource path="res://KOMIKAX_.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 170
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 540, 960 )
+texture = ExtResource( 2 )
+
+[node name="GameLabel" type="RichTextLabel" parent="Background"]
+margin_left = -536.0
+margin_top = -894.0
+margin_right = 538.0
+margin_bottom = -253.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][wave amp=50.0 freq=5.0 connected=1]BUGGY JUMPER![/wave]
+SHOP[/center]"
+text = "BUGGY JUMPER!
+SHOP"
+
+[node name="Sprite" type="Sprite" parent="Background"]
+texture = ExtResource( 4 )
+
+[node name="flagLabel" type="RichTextLabel" parent="."]
+margin_left = 15.0
+margin_top = 719.0
+margin_right = 1063.0
+margin_bottom = 810.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 6 )
+
+[node name="pointsLabel" type="RichTextLabel" parent="."]
+margin_left = 48.0
+margin_top = 635.0
+margin_right = 1030.0
+margin_bottom = 726.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "Points: "
+
+[node name="poorLabel" type="RichTextLabel" parent="."]
+margin_left = 135.0
+margin_top = 1196.0
+margin_right = 983.0
+margin_bottom = 1375.0
+custom_colors/default_color = Color( 0.956863, 0.172549, 0.0666667, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]TOO POOR FOR THE DRIP!![/center]"
+text = "TOO POOR FOR THE DRIP!!"
+
+[node name="boughtLabel" type="RichTextLabel" parent="."]
+margin_left = 132.0
+margin_top = 1192.0
+margin_right = 980.0
+margin_bottom = 1371.0
+custom_colors/default_color = Color( 0.337255, 0.756863, 0.27451, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]DRIP ACQURED![/center]"
+text = "DRIP ACQURED!"
+
+[node name="ownedLabel" type="RichTextLabel" parent="."]
+margin_left = -70.0
+margin_top = 1191.0
+margin_right = 1161.0
+margin_bottom = 1408.0
+custom_colors/default_color = Color( 0.337255, 0.756863, 0.27451, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]BUGGY IS ALREADY DRIPPED OUT![/center]
+"
+text = "BUGGY IS ALREADY DRIPPED OUT!
+"
+
+[node name="Buy" type="Button" parent="."]
+margin_left = 174.0
+margin_top = 1268.0
+margin_right = 905.0
+margin_bottom = 1414.0
+custom_fonts/font = SubResource( 3 )
+text = "BUY DRIPPY BUGGY"
+
+[node name="Description" type="RichTextLabel" parent="."]
+margin_left = 1.0
+margin_top = 1450.0
+margin_right = 1078.0
+margin_bottom = 1793.0
+rect_pivot_offset = Vector2( 221, -507 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center] 7331,7331 points required to get [wave amp=50.0 freq=5.0 connected=1]dripped out![/wave]
+
+Earn points by playing!
+[/center]"
+text = " 7331,7331 points required to get dripped out!
+
+Earn points by playing!
+"
+
+[node name="Main Menu" type="Button" parent="."]
+margin_left = 300.0
+margin_top = 1729.0
+margin_right = 764.0
+margin_bottom = 1867.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Buy" to="." method="_on_Buy_pressed"]
+[connection signal="pressed" from="Main Menu" to="." method="_on_Main_Menu_pressed"]

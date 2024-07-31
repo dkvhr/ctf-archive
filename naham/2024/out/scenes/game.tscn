@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://04B_30__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://objects/buggy.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/buggy.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=6]
+size = 90
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="PhysicsMaterial" id=9]
+bounce = 1.0
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 539, 112.25 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 540, 960 )
+texture = ExtResource( 3 )
+
+[node name="GameLabel" type="RichTextLabel" parent="."]
+margin_left = 15.0
+margin_top = 37.0
+margin_right = 1109.0
+margin_bottom = 173.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=50.0 freq=5.0 connected=1]BUGGY JUMPER![/wave]"
+text = "BUGGY JUMPER!"
+
+[node name="GameOverLabel" type="RichTextLabel" parent="."]
+margin_left = -3.0
+margin_top = 288.0
+margin_right = 1074.0
+margin_bottom = 814.0
+custom_colors/default_color = Color( 1, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center][wave amp=50.0 freq=5.0 connected=1]GAME OVER![/wave]
+
+NEW TOTAL POINTS: 
+[/center]"
+text = "GAME OVER!
+
+NEW TOTAL POINTS: 
+"
+
+[node name="PlayAgain" type="Button" parent="."]
+margin_left = 302.0
+margin_top = 982.0
+margin_right = 781.0
+margin_bottom = 1108.0
+custom_fonts/font = SubResource( 10 )
+text = "PLAY AGAIN"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="."]
+margin_left = 33.0
+margin_top = 174.0
+margin_right = 1058.0
+margin_bottom = 248.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "SCORE:"
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 540, 960 )
+physics_material_override = SubResource( 9 )
+gravity_scale = 22.14
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PoolVector2Array( 151, -173, -169, -142, -157, 165, 107, 155, 168, -151 )
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.1
+anchor_top = 0.885
+anchor_right = 0.885
+anchor_bottom = 0.97
+margin_left = 540.0
+margin_top = 960.0
+margin_right = 540.0
+margin_bottom = 960.0
+
+[node name="Exit" type="Button" parent="Control"]
+margin_left = -246.0
+margin_top = 790.0
+margin_right = 239.0
+margin_bottom = 892.0
+custom_fonts/font = SubResource( 7 )
+text = "EXIT"
+
+[node name="Exit" type="Button" parent="Control/Exit"]
+margin_left = -246.0
+margin_top = 790.0
+margin_right = 239.0
+margin_bottom = 892.0
+custom_fonts/font = SubResource( 7 )
+text = "EXIT"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 540, 1807.75 )
+shape = SubResource( 8 )
+
+[connection signal="pressed" from="PlayAgain" to="RigidBody2D" method="_on_PlayAgain_pressed"]
+[connection signal="pressed" from="Control/Exit" to="RigidBody2D" method="_on_Exit_pressed"]
+[connection signal="pressed" from="Control/Exit/Exit" to="RigidBody2D" method="_on_Exit_pressed"]
+[connection signal="body_entered" from="Area2D" to="RigidBody2D" method="_on_Area2D_body_entered"]

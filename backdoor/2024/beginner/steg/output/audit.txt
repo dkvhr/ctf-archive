@@ -1,0 +1,25 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sun Dec 17 22:55:43 2023
+Invocation: foremost -v cutie.png 
+Output directory: /home/davi/Downloads/ctf/backdoor/beginner/steg/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: cutie.png
+Start: Sun Dec 17 22:55:43 2023
+Length: 47 KB (48538 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000083.zip 	       5 KB 	      42730 	 
+1:	00000000.png 	      41 KB 	          0 	  (217 x 122)
+Finish: Sun Dec 17 22:55:43 2023
+
+2 FILES EXTRACTED
+	
+zip:= 1
+png:= 1
+------------------------------------------------------------------
+
+Foremost finished at Sun Dec 17 22:55:43 2023

