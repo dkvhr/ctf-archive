@@ -1,0 +1,2 @@
+ssh saturn.picoctf.net:56673
+# run the bin named "bin" once connected. Login as "ctf-player" with the password "fd7746b4"

