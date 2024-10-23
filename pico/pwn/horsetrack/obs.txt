@@ -1,0 +1,1 @@
+verifica se stable ja esta em uso - double free possivelmente nao funciona (?)
