@@ -1,7 +1,7 @@
 from pwn import *
 
-file_elf = ELF("./vuln")
+file_elf = ELF("./chall")
 
-p = gdb.debug("./vuln")
+p = gdb.debug("./chall")
 
 p.interactive()
