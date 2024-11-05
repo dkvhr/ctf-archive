@@ -1,1 +1,4 @@
 verifica se stable ja esta em uso - double free possivelmente nao funciona (?)
+input 0 = cheating
+horse_chunk+16*index = pointer to horse name chunk
+horse_chunk+16*stable_index+12 = allocated
