@@ -1,5 +1,24 @@
+#!/usr/bin/env python3
+
 from pwn import *
 from time import sleep
+
+exe = ELF("admin")
+libc = ELF("./libc.so.6")
+
+context.binary = exe
+
+def conn():
+    if args.REMOTE:
+        io = remote("tamuctf.com", 443, ssl=True, sni="tamuctf_debug-1")
+    else:
+        if args.GDB:
+            io = gdb.debug([exe.path], aslr=False, api=False, gdbscript="""
+            """)
+        else:
+            io = process([exe.path])
+    return io
+
 
 #context(arch='amd64', os='linux', endian='little')
 

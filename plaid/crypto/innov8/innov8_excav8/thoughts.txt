@@ -1,0 +1,79 @@
+see math-random.cc impl on v8 (src/numbers/math-random.cc)
+
+we can find the algo here: base::RandomNumberGenerator::XorShift128(&state.s0, &state.s1);
+
+this is the definition:
+
+```cc
+  // Static and exposed for external use.
+  static inline double ToDouble(uint64_t state0) {
+    // Get a random [0,2**53) integer value (up to MAX_SAFE_INTEGER) by dropping
+    // 11 bits of the state.
+    double random_0_to_2_53 = static_cast<double>(state0 >> 11);
+    // Map this to [0,1) by division with 2**53.
+    constexpr double k2_53{static_cast<uint64_t>(1) << 53};
+    return random_0_to_2_53 / k2_53;
+  }
+
+  // Static and exposed for external use.
+  static inline void XorShift128(uint64_t* state0, uint64_t* state1) {
+    uint64_t s1 = *state0;
+    uint64_t s0 = *state1;
+    *state0 = s0;
+    s1 ^= s1 << 23;
+    s1 ^= s1 >> 17;
+    s1 ^= s0;
+    s1 ^= s0 >> 26;
+    *state1 = s1;
+  }
+```
+
+maybe a SMT can solve this?
+
+this looks yabai (?): cache->set(i, base::RandomNumberGenerator::ToDouble(state.s0));
+maybe we lose some info because of tagged pointers? not sure if it gives back the value it saved on the register
+
+on chall.py, each bit calls gen.js, which generates 24 random numbers. As each byte has 8 bits, we have 8*24 = 192 results
+for each byte.
+There are 14976 numbers generated, so this means the flag has 78 characters
+
+24 numbers should be more than enough to figure out the original bit.
+
+node actually uses v8 as its js engine, so it probably inherits the Math.random or some crazy stuff from OOP, 
+but maybe I should check on it.
+
+how will I know if it used v8 or node if they have the same implementation?
+
+actually checking it, there are some differences!!!
+
+this is node's definition:
+
+```cc
+  // Static and exposed for external use.
+  static inline double ToDouble(uint64_t state0) {
+    // Exponent for double values for [1.0 .. 2.0)
+    static const uint64_t kExponentBits = uint64_t{0x3FF0000000000000};
+    uint64_t random = (state0 >> 12) | kExponentBits;
+    return base::bit_cast<double>(random) - 1;
+  }
+
+  // Static and exposed for external use.
+  static inline void XorShift128(uint64_t* state0, uint64_t* state1) {
+    uint64_t s1 = *state0;
+    uint64_t s0 = *state1;
+    *state0 = s0;
+    s1 ^= s1 << 23;
+    s1 ^= s1 >> 17;
+    s1 ^= s0;
+    s1 ^= s0 >> 26;
+    *state1 = s1;
+  }
+```
+
+So I can take the 24 values, try to solve it for V8, if it holds true, then the bit was 0.
+If I can't solve it, that means there is no solution (at least for the algo in question),
+which probably means it used node and the bit is 1, so we don't even need to do more calculations
+Do that 8 times and you get a byte (which means a character of the flag for us!!!!)
+
+v8: https://github.com/v8/v8/blob/13.6.1/src/base/utils/random-number-generator.h#L111
+node: https://github.com/nodejs/node/blob/main/deps/v8/src/base/utils/random-number-generator.h#L111
