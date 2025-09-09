@@ -1,0 +1,8 @@
+docker run -it --cap-add=SYS_PTRACE --pid host --security-opt seccomp=unconfined --rm -p 1337:1337 ubuntu:25.04@sha256:57665ab8178042ef197191fd77d21d8a2f7f535acd26ff7bd548b1f340f081d7 /bin/bash
+
+with gdbserver installed on the container:
+gdbserver 0.0.0.0:1337 ./vuln
+
+on host:
+gdb -q ./vuln
+target remote :1337
